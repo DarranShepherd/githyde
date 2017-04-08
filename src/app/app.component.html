@@ -1,4 +1,13 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+<div class="containerX">
+  <md-toolbar color="primary">
+    <a md-icon-button md-tooltip="Home" routerLink="/">
+      <md-icon>home</md-icon>
+    </a>
+    <span>GitHyde</span>
+    <span fxFlex="1 1 auto"></span>
+  </md-toolbar>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
