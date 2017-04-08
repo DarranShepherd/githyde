@@ -33,4 +33,6 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('gh works!');
   }));
+
+  it('should fail', () => expect(true).toBeFalsy());
 });
