@@ -1,0 +1,13 @@
+<div *ngIf="isLoggedIn | async">
+  <img [src]="photoUrl | async" class="photo">
+  <span>{{ name | async }}</span>
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item (click)="logout()">
+      <md-icon>exit_to_app</md-icon>
+      <span>Logout</span>
+    </button>
+  </md-menu>
+</div>
