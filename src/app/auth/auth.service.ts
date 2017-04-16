@@ -5,6 +5,8 @@ import { AngularFire, FirebaseAuthState } from 'angularfire2';
 import 'rxjs/add/operator/map';
 
 export interface UserInfo {
+  uid: string;
+  accessToken?: string;
   email: string;
   name: string;
   photoUrl: string;
@@ -12,15 +14,8 @@ export interface UserInfo {
 
 @Injectable()
 export class AuthService {
-  private _accessToken: string;
 
-  constructor(private af: AngularFire) {
-    af.auth.subscribe(state => {
-      if (state && state.github && (<any>state.github).accessToken) {
-        this._accessToken = (<any>state.github).accessToken;
-      }
-    });
-  }
+  constructor(private af: AngularFire) { }
 
   login(): Promise<FirebaseAuthState> {
     return new Promise(() => this.af.auth.login());
@@ -38,6 +33,8 @@ export class AuthService {
     return this.af.auth.map(state => {
       if (state && !state.anonymous) {
         return {
+          uid: state.uid,
+          accessToken: (state.github as any).accessToken,
           email: state.auth.email || state.github.email,
           name: state.auth.displayName || state.github.displayName,
           photoUrl: state.auth.photoURL || state.github.photoURL
