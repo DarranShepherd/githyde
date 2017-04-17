@@ -1,4 +1,4 @@
-import { AuthProviders, AuthMethods, FirebaseAppConfig  } from 'angularfire2';
+import { AuthProviders, AuthMethods, FirebaseAppConfig } from 'angularfire2';
 
 export const firebaseAppConfig: FirebaseAppConfig = {
     apiKey: 'AIzaSyDrKm3viYytMep7eqkMtystaiBPlJG6UJQ',
@@ -7,6 +7,6 @@ export const firebaseAppConfig: FirebaseAppConfig = {
 };
 export const firebaseAuthConfig = {
     provider: AuthProviders.Github,
-    method: AuthMethods.Redirect,
+    method: AuthMethods.Popup,
     scope: ['repo']
 };

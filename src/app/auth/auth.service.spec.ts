@@ -9,7 +9,7 @@ describe('AuthService', () => {
   let sut: AuthService;
 
   beforeEach(() => {
-    sut = new AuthService(null);
+    sut = new AuthService(null, null);
   });
 
   xit('should return false when not logged in', () => {

@@ -4,6 +4,8 @@ import { AngularFire, FirebaseAuthState } from 'angularfire2';
 
 import 'rxjs/add/operator/map';
 
+import { TokenStoreService } from './token-store.service';
+
 export interface UserInfo {
   uid: string;
   accessToken?: string;
@@ -14,11 +16,12 @@ export interface UserInfo {
 
 @Injectable()
 export class AuthService {
-
-  constructor(private af: AngularFire) { }
+  constructor(private af: AngularFire, private tokenStore: TokenStoreService) {
+    af.auth.subscribe(state => this.tokenStore.onNewAuthState(state));
+   }
 
   login(): Promise<FirebaseAuthState> {
-    return new Promise(() => this.af.auth.login());
+    return new Promise(() => this.af.auth.login().then(state => this.tokenStore.onNewAuthState(state)));
   }
 
   logout(): void {
