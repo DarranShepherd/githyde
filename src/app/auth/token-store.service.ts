@@ -10,7 +10,7 @@ export class TokenStoreService {
     auth.getUserInfo().subscribe(userInfo => this.onNewUserInfo(userInfo));
   }
 
-  get token() { return this._token; }
+  get token(): string { return this._token; }
 
   private onNewUserInfo(userInfo: UserInfo) {
     if (userInfo && userInfo.uid) {

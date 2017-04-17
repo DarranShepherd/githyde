@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from 'angularfire2';
 
 import { ExplorerModule } from './explorer/explorer.module';
+import { GitHubModule } from './github/github.module';
 
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,7 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebaseAppConfig, environment.firebaseAuthConfig),
 
     AuthModule,
+    GitHubModule,
     ExplorerModule,
     AppRoutingModule
   ],

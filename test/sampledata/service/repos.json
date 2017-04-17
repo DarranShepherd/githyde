@@ -1,0 +1,20 @@
+[
+    {
+        "id": 123456,
+        "name": "repo1",
+        "private": true,
+        "hasPages": false
+    },
+    {
+        "id": 234567,
+        "name": "repo2",
+        "private": false,
+        "hasPages": true
+    },
+    {
+        "id": 345678,
+        "name": "repo3",
+        "private": true,
+        "hasPages": true
+    }
+]

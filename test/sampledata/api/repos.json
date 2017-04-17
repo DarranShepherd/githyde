@@ -1,0 +1,24 @@
+[
+    {
+        "id": 123456,
+        "name": "repo1",
+        "full_name": "user/repo1",
+        "owner": {
+            "id": 9876,
+            "login": "user"
+        },
+        "private": true,
+        "has_pages": false
+    },
+    {
+        "id": 234567,
+        "name": "repo2",
+        "full_name": "user/repo2",
+        "owner": {
+            "id": 9876,
+            "login": "user"
+        },
+        "private": false,
+        "has_pages": true
+    }
+]

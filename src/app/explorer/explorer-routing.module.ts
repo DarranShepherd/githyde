@@ -9,7 +9,7 @@ import { RepositoryComponent } from './repository/repository.component';
 
 const routes: Routes = [
   { path: '', component: RepositoriesComponent, canActivate: [AuthGuard] },
-  { path: ':name', component: RepositoryComponent, canActivate: [AuthGuard] }
+  { path: ':repo', component: RepositoryComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
