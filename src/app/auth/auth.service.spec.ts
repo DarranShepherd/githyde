@@ -2,7 +2,6 @@ import { TestBed, inject } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-import { AngularFire, AngularFireAuth, FirebaseAuthState } from 'angularfire2';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {

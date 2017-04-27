@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 import 'rxjs/add/operator/map';
 
@@ -16,31 +17,30 @@ export interface UserInfo {
 
 @Injectable()
 export class AuthService {
-  constructor(private af: AngularFire, private tokenStore: TokenStoreService) {
-    af.auth.subscribe(state => this.tokenStore.onNewAuthState(state));
-   }
+  constructor(private af: AngularFireAuth, private tokenStore: TokenStoreService) { }
 
-  login(): Promise<FirebaseAuthState> {
-    return new Promise(() => this.af.auth.login().then(state => this.tokenStore.onNewAuthState(state)));
+  login(): Promise<any> {
+    const provider = new firebase.auth.GithubAuthProvider();
+    provider.addScope('repo');
+    return new Promise(() => this.af.auth.signInWithRedirect(provider));
   }
 
   logout(): void {
-    this.af.auth.logout().then(() => window.location.reload());
+    this.af.auth.signOut().then(() => window.location.reload());
   }
 
   isLoggedIn(): Observable<boolean> {
-    return this.af.auth.map(state => state && !state.anonymous);
+    return this.af.authState.map(state => state && !state.isAnonymous);
   }
 
   getUserInfo(): Observable<UserInfo> {
-    return this.af.auth.map(state => {
-      if (state && !state.anonymous) {
+    return this.af.authState.do(x => console.log(x)).map(user => {
+      if (user && !user.isAnonymous) {
         return {
-          uid: state.uid,
-          accessToken: (state.github as any).accessToken,
-          email: state.auth.email || state.github.email,
-          name: state.auth.displayName || state.github.displayName,
-          photoUrl: state.auth.photoURL || state.github.photoURL
+          uid: user.uid,
+          email: user.email,
+          name: user.displayName,
+          photoUrl: user.photoURL
         };
       }
       return undefined;

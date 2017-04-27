@@ -1,5 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 import { AuthService } from './auth.service';
 import { TokenStoreService } from './token-store.service';
@@ -18,9 +21,11 @@ describe('TokenStoreService', () => {
       providers: [
         TokenStoreService,
         {
-          provide: AuthService, useValue: {
-            getUserInfo: () => userInfo.asObservable(),
-            setUserInfo: user => userInfo.next(user)
+          provide: AngularFireAuth, useValue: {
+            auth: {
+              getRedirectResult: () => new Promise(() => {})
+            },
+            authState: Observable.of(false)
           }
         }
       ]
@@ -29,7 +34,7 @@ describe('TokenStoreService', () => {
 
   it('should check for token in session storage when user logs in', inject([TokenStoreService], (service: TokenStoreService) => {
     // TestBed.get(AuthService).setUserInfo({ uid: '123' });
-    service.onNewAuthState({ uid: '123', provider: undefined, auth: undefined });
+    service.onNewUser({isAnonymous: false, uid: '123'} as firebase.User);
     expect(getItemSpy).toHaveBeenCalledWith('github.token.123');
   }));
 

@@ -9,20 +9,19 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./user-menu.component.scss']
 })
 export class UserMenuComponent {
+  isLoggedIn: boolean;
+  name: string;
+  photoUrl: string;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) {
+    this.auth.isLoggedIn().subscribe(state => this.isLoggedIn = state);
+    this.auth.getUserInfo().subscribe(info => {
+      this.name = info.name;
+      this.photoUrl = info.photoUrl;
+    });
+  }
 
   logout() {
     this.auth.logout();
-  }
-
-  get isLoggedIn(): Observable<boolean> {
-    return this.auth.isLoggedIn();
-  }
-  get name(): Observable<string> {
-    return this.auth.getUserInfo().map(info => info.name);
-  }
-  get photoUrl(): Observable<string> {
-    return this.auth.getUserInfo().map(info => info.photoUrl);
   }
 }

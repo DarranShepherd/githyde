@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ExplorerModule } from './explorer/explorer.module';
 import { GitHubModule } from './github/github.module';
@@ -31,7 +32,8 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AngularFireModule.initializeApp(environment.firebaseAppConfig, environment.firebaseAuthConfig),
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseAppConfig),
 
     AuthModule,
     GitHubModule,

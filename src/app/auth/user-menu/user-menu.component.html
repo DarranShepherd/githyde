@@ -1,6 +1,6 @@
-<div *ngIf="isLoggedIn | async">
-  <img [src]="photoUrl | async" class="photo">
-  <span>{{ name | async }}</span>
+<div *ngIf="isLoggedIn">
+  <img [src]="photoUrl" class="photo">
+  <span>{{ name }}</span>
   <button md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>more_vert</md-icon>
   </button>
