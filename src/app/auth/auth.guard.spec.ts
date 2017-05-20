@@ -1,6 +1,5 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { RouterStateSnapshot } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
@@ -19,8 +18,8 @@ describe('AuthGuard', () => {
             setIsLoggedIn: state => isLoggedIn.next(state)
           }
         },
-        { provide: MdDialog, useValue: {
-          open: jasmine.createSpy('open')
+        { provide: Router, useValue: {
+          navigate: jasmine.createSpy('navigate')
         } },
         { provide: RouterStateSnapshot, useValue: {} }
       ]
@@ -34,11 +33,23 @@ describe('AuthGuard', () => {
     expect(canActivate).toBeTruthy();
   }));
 
-  it('should open the login dialog if not authenticated', inject(
-      [AuthGuard, AuthService, MdDialog],
-      (guard: AuthGuard, auth: any, mdDialog: any) => {
+  it('should redirect to / if not authenticated', inject(
+      [AuthGuard, AuthService, Router],
+      (guard: AuthGuard, auth: any, router: Router) => {
     auth.setIsLoggedIn(false);
     guard.canActivate(undefined, undefined).subscribe(() => {});
-    expect(mdDialog.open).toHaveBeenCalledWith(LoginComponent);
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   }));
+
+  it('should not redirect to / if not authenticated but already on /', inject(
+      [AuthGuard, AuthService, Router],
+      (guard: AuthGuard, auth: any, router: Router) => {
+
+    const snapshot = new ActivatedRouteSnapshot();
+    snapshot.url = [];
+    auth.setIsLoggedIn(false);
+    guard.canActivate(snapshot, undefined).subscribe(() => {});
+    expect(router.navigate).not.toHaveBeenCalled();
+  }));
+
 });

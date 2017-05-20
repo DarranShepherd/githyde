@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { MdDialogRef } from '@angular/material';
 import { AuthService } from '../auth.service';
 import { LoginComponent } from './login.component';
 
@@ -12,8 +11,7 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       providers: [
-        { provide: AuthService, useValue: { login: jasmine.createSpy('login') } },
-        { provide: MdDialogRef, useValue: { close: jasmine.createSpy('close') } }
+        { provide: AuthService, useValue: { login: jasmine.createSpy('login') } }
       ]
     })
     .compileComponents();
@@ -32,10 +30,5 @@ describe('LoginComponent', () => {
   it('should call login on the login service', () => {
     fixture.debugElement.query(By.css('button[md-button]')).triggerEventHandler('click', null);
     expect(TestBed.get(AuthService).login).toHaveBeenCalled();
-  });
-
-  it('should call close on the dialog ref', () => {
-    fixture.debugElement.query(By.css('button[md-button]')).triggerEventHandler('click', null);
-    expect(TestBed.get(MdDialogRef).close).toHaveBeenCalled();
   });
 });

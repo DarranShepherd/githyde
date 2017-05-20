@@ -1,0 +1,6 @@
+<div *ngIf="isLoggedIn; else login">
+  <gh-repositories></gh-repositories>
+</div>
+<ng-template #login>
+  <gh-login></gh-login>
+</ng-template>

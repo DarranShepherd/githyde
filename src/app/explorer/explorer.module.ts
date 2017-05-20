@@ -14,6 +14,7 @@ import { RepositoryComponent } from './repository/repository.component';
     FlexLayoutModule,
     ExplorerRoutingModule
   ],
-  declarations: [RepositoriesComponent, RepositoryComponent]
+  declarations: [RepositoriesComponent, RepositoryComponent],
+  exports: [RepositoriesComponent]
 })
 export class ExplorerModule { }

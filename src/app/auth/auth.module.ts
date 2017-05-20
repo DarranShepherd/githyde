@@ -14,7 +14,7 @@ import { UserMenuComponent } from './user-menu/user-menu.component';
     MaterialModule
   ],
   declarations: [LoginComponent, UserMenuComponent],
-  exports: [UserMenuComponent],
+  exports: [LoginComponent, UserMenuComponent],
   providers: [AuthGuard, AuthService, TokenStoreService],
   entryComponents: [LoginComponent]
 })

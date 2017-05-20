@@ -16,6 +16,7 @@ import { GitHubModule } from './github/github.module';
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { environment } from '../environments/environment';
@@ -23,6 +24,7 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
     PageNotFoundComponent
   ],
   imports: [

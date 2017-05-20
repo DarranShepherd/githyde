@@ -15,7 +15,7 @@ export class UserMenuComponent {
 
   constructor(private auth: AuthService) {
     this.auth.isLoggedIn().subscribe(state => this.isLoggedIn = state);
-    this.auth.getUserInfo().subscribe(info => {
+    this.auth.getUserInfo().filter(info => !!info).subscribe(info => {
       this.name = info.name;
       this.photoUrl = info.photoUrl;
     });

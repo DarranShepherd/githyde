@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   getUserInfo(): Observable<UserInfo> {
-    return this.af.authState.do(x => console.log(x)).map(user => {
+    return this.af.authState.map(user => {
       if (user && !user.isAnonymous) {
         return {
           uid: user.uid,
