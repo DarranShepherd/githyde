@@ -1,0 +1,15 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>Pages</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-list>
+      <md-list-item *ngFor="let page of pages | async">
+        <md-icon md-list-icon fxShow fxHide.lt-sm>pages</md-icon>
+        <div md-line>
+          <a md-button [routerLink]="['/', repo.owner.login, repo.name, 'pages', page.name]">{{ page.name }}</a>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

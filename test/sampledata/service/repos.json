@@ -3,18 +3,30 @@
         "id": 123456,
         "name": "repo1",
         "private": true,
-        "hasPages": false
+        "hasPages": false,
+        "owner": {
+            "id": 999,
+            "login": "foo"
+        }
     },
     {
         "id": 234567,
         "name": "repo2",
         "private": false,
-        "hasPages": true
+        "hasPages": true,
+        "owner": {
+            "id": 999,
+            "login": "foo"
+        }
     },
     {
         "id": 345678,
         "name": "repo3",
         "private": true,
-        "hasPages": true
+        "hasPages": true,
+        "owner": {
+            "id": 999,
+            "login": "foo"
+        }
     }
 ]

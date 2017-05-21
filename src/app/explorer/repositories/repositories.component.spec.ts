@@ -42,9 +42,11 @@ describe('RepositoriesComponent', () => {
 
     expect(links.length).toBe(2);
     expect(links[0].linkParams[0]).toBe('/');
-    expect(links[0].linkParams[1]).toBe(repos[0].name);
+    expect(links[0].linkParams[1]).toBe(repos[0].owner.login);
+    expect(links[0].linkParams[2]).toBe(repos[0].name);
     expect(links[1].linkParams[0]).toBe('/');
-    expect(links[1].linkParams[1]).toBe(repos[1].name);
+    expect(links[0].linkParams[1]).toBe(repos[1].owner.login);
+    expect(links[1].linkParams[2]).toBe(repos[1].name);
   });
 });
 

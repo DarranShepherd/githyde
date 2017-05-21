@@ -7,7 +7,7 @@
       <md-list-item *ngFor="let repo of repositories | async">
         <md-icon md-list-icon fxShow fxHide.lt-sm>code</md-icon>
         <div md-line>
-          <a md-button [routerLink]="['/', repo.name]">{{ repo.name }}</a>
+          <a md-button [routerLink]="['/', repo.owner.login, repo.name]">{{ repo.name }}</a>
         </div>
       </md-list-item>
     </md-list>

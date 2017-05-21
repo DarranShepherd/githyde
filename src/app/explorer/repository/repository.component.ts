@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { GitHubService } from '../../github/github.service';
+import { Repository } from '../../github/interfaces';
 
 @Component({
   selector: 'gh-repository',
@@ -6,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./repository.component.scss']
 })
 export class RepositoryComponent implements OnInit {
+  repo: Repository;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private github: GitHubService) { }
 
   ngOnInit() {
+    this.route.params
+      .switchMap(p => this.github.getRepository(p['owner'], p['repo']))
+      .subscribe(r => this.repo = r);
   }
 
 }

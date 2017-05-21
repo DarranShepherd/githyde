@@ -1,0 +1,18 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>Builds</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-list>
+      <md-list-item *ngFor="let build of builds | async">
+        <md-icon md-list-icon fxShow fxHide.lt-sm>build</md-icon>
+        <div md-line>
+          {{ build.status | uppercase }} by {{ build.pusher.login }} on {{ build.updated | date }}
+        </div>
+        <div md-line *ngIf="build.error?.message">
+          {{ build.error.message }}
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

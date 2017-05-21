@@ -1,3 +1,9 @@
-<p>
-  repository works!
-</p>
+<h1>{{ repo?.name }}</h1>
+<!--
+    Repository details
+    From _config.yml - title, description, twitter, github, excerpt separator
+    From CNAME - the domain name of the repo if set
+-->
+<gh-posts [repo]="repo"></gh-posts>
+<gh-pages [repo]="repo"></gh-pages>
+<gh-builds [repo]="repo"></gh-builds>

@@ -96,3 +96,33 @@ export interface GitHubUser {
     type?: string; // 'User';
     site_admin?: boolean;
 }
+
+export interface GitHubContent {
+    download_url: string;
+    git_url: string;
+    html_url: string;
+    name: string;
+    path: string;
+    sha: string;
+    size: number;
+    type: string; // 'file'
+    url: string;
+    _links: {
+        git: string;
+        html: string;
+        self: string;
+    };
+}
+
+export interface GitHubPagesBuild {
+    commit: string;
+    created_at: string;
+    duration: number;
+    error: {
+        message: string;
+    };
+    pusher: GitHubUser;
+    status: string; // 'built'
+    updated_at: string;
+    url: string;
+}

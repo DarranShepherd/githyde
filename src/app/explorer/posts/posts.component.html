@@ -1,0 +1,15 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>Posts</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-list>
+      <md-list-item *ngFor="let post of posts | async">
+        <md-icon md-list-icon fxShow fxHide.lt-sm>message</md-icon>
+        <div md-line>
+          <a md-button [routerLink]="['/', repo.owner.login, repo.name, 'posts', post.name]">{{ post.name }}</a>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>
